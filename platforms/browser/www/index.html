@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <!--link rel="stylesheet" type="text/css" href="css/index.css" /-->
+    <title>Hello World</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link href="js/jquery.touchPDF.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.pushStateEnabled = false;
+        $.mobile.allowCrossDomainPages = true;
+        $.support.cors = true;
+        $.mobile.ajaxEnabled = true;
+        $.mobile.linkBindingEnabled = true;
+    });
+</script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#newsbutton").click(function(event) {
+            console.log("loading news...");
+            render_news_list();
+            });
+             $("#registerbutton").click(function(event) {
+            console.log("register...");
+            render_register_page();
+            });
+        });
+        
+    </script>
+</head>
+
+<body>
+    <div class="app">
+        <div data-role="page">
+
+            <div data-role="panel" id="drawer">
+
+             <ul data-role="listview">
+                 <li><a href="" id="newsbutton" data-rel="close">News</a></li>
+                 <li><a href="" id="registerbutton" data-rel="close">Register</a></li>
+             </ul>
+        
+            </div><!-- /panel -->
+            <div data-role="header">
+                <a type="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext" href="#drawer"></a>
+                <h1>Page Title</h1>
+            </div><!-- /header -->
+
+            <div role="main" id="mainpage" class="ui-content">
+                 <p>Page content goes here.</p>
+                 
+
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                 <h4>Page Footer</h4>
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+         <!-- <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p> 
+        </div> 
+        </div>
+         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+         <script type="text/javascript">
+        app.initialize();
+         </script>-->
+         <div data-role="page" id="myPDF">
+            
+            <iframe src="" id="pdfcontent"  style="position:fixed;top:0px;left:0px;bottom:0px;right:0px;width:100%;height:100%; border:none;margin:0;padding:0;overflow:hidden;"></iframe>
+            
+         </div>
+    </div>
+    <script src="/js/pdf.compatibility.js"></script>
+    <script src="/js/pdf.js"></script>
+    <script src="/js/jquery.touchSwipe.js"></script> 
+    <script src="/js/jquery.touchPDF.js"></script>
+    <script src="/js/jquery.panzoom.js"></script>
+    <script src="/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/renderer.js"></script>
+
+</body>
+
+</html>
